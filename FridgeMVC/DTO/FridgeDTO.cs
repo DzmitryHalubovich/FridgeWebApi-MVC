@@ -1,4 +1,4 @@
-﻿namespace FridgeManager.DAL.DTO
+﻿namespace FridgeManager.Client.DTO
 {
     public class FridgeDTO
     {
