@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace FridgeApi.Controllers
+namespace FridgeManager.Controllers
 {
     [ApiController]
     [Route("[controller]")]

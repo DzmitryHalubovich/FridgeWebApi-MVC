@@ -1,4 +1,4 @@
-namespace FridgeMVC
+namespace FridgeManagerMVC
 {
     public class Program
     {

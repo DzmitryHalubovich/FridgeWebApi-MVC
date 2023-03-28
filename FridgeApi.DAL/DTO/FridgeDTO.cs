@@ -1,6 +1,6 @@
-﻿namespace FridgeManager.DAL
+﻿namespace FridgeManager.DAL.DTO
 {
-    public class Fridge
+    public class FridgeDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
