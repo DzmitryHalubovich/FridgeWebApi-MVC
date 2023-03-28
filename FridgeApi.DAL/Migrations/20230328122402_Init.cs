@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Fridge.DAL.Migrations
+namespace FridgeManager.DAL.Migrations
 {
     /// <inheritdoc />
     public partial class Init : Migration

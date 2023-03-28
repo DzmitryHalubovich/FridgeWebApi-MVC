@@ -1,3 +1,6 @@
+using FridgeManager.Services.Implementations;
+using FridgeManager.Services.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,7 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-Fridge.DAL.Dependencies.ConfigureServices(builder.Configuration, builder.Services);
+FridgeManager.DAL.Dependencies.ConfigureServices(builder.Configuration, builder.Services);
+
+builder.Services.AddScoped(typeof(IFridgeService),typeof(FridgeService));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

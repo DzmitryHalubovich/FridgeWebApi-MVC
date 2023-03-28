@@ -16,7 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FridgeApi.DAL\Fridge.DAL.csproj" />
+    <ProjectReference Include="..\Fridge.Services\FridgeManager.Services.csproj" />
+    <ProjectReference Include="..\FridgeApi.DAL\FridgeManager.DAL.csproj" />
   </ItemGroup>
 
 </Project>
