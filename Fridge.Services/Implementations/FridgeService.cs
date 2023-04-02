@@ -33,7 +33,7 @@ namespace FridgeManager.Services.Implementations
 
         }
 
-        public void Delete(int id)
+        public void DeleteAsync(int id)
         {
            var fridge =  _context.Fridges.SingleOrDefault(x=>x.Id==id);
 

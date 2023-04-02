@@ -47,7 +47,7 @@ namespace FridgeManager.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            _fridgeService.Delete(id);
+            _fridgeService.DeleteAsync(id);
             return Ok();
         }
     }

@@ -10,6 +10,6 @@ namespace FridgeManager.Services.Interfaces
 
         public void Create(FridgeDTO dto);
         public void Update(int id, FridgeDTO dto);
-        public void Delete(int dto);
+        public void DeleteAsync(int dto);
     }
 }

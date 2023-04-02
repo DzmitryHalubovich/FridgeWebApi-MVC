@@ -38,9 +38,9 @@
             </td>
             <td>
                @* @Html.ActionLink("Update", "Update", new { id=item.Id }) |*@
-               <a asp-action="Edit" asp-controller="Fridges" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                <a asp-action="Edit" asp-controller="Fridges" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                <a asp-action="DeleteGet" asp-controller="Fridges" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
             </td>
         </tr>
 }
