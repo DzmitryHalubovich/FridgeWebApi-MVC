@@ -1,0 +1,24 @@
+﻿@model FridgeManager.DAL.DTO.Fridge.FridgeIndexDTO
+
+<div class="container" >
+    <div style="display:flex; justify-content:space-between">
+        <div>
+            <p>Name:</p>
+        </div>
+        <div>
+            <p>@Model.Name</p>
+        </div>
+    </div>
+    <div style="display:flex; justify-content:space-between">
+        <div>
+            <p>Owner name:</p>
+        </div>
+        <div>
+            <p>@Model.OwnerName</p>
+        </div>
+    </div>
+</div>
+
+<form asp-action="DeleteFridge" asp-route-id="@Model.Id">
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
