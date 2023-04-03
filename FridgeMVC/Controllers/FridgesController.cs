@@ -1,5 +1,4 @@
-﻿using FridgeManager.DAL;
-using FridgeManager.DAL.DTO.Fridge;
+﻿using FridgeManager.DAL.DTO.Fridge;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FridgeManager.Client.Controllers
@@ -19,15 +18,16 @@ namespace FridgeManager.Client.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create() 
-        { 
-            return View(new FridgeDTO());
+        public IActionResult Create()
+        {
+
+            return PartialView("_createPartialView", new FridgeDTO());
         }
 
         [HttpPost]
         public IActionResult Create(FridgeDTO dto)
         {
-            HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("fridges",dto).Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("fridges", dto).Result;
             return RedirectToAction("Index");
         }
 
@@ -54,7 +54,7 @@ namespace FridgeManager.Client.Controllers
             
             fridge = response.Content.ReadAsAsync<FridgeIndexDTO>().Result;
 
-            return View(fridge);
+            return PartialView("_deletePartialView",fridge);
         }
 
         [HttpPost]
@@ -63,5 +63,6 @@ namespace FridgeManager.Client.Controllers
             HttpResponseMessage response = GlobalVariables.WebApiClient.DeleteAsync("fridges/" + id.ToString()).Result;
             return RedirectToAction("Index");
         }
+
     }
 }

@@ -7,7 +7,11 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    @*<a class="btn btn-primary" asp-action="Create">Create New</a>*@
+    <a class="btn btn-info" onclick="createModal({ url: '/Fridges/Create/' })"
+            data-toggle="ajax-modal" data-target="Modal">
+        Create New
+    </a>
 </p>
 <table class="table">
     <thead>
@@ -38,11 +42,28 @@
             </td>
             <td>
                @* @Html.ActionLink("Update", "Update", new { id=item.Id }) |*@
-                <a asp-action="Edit" asp-controller="Fridges" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                <a asp-action="DeleteGet" asp-controller="Fridges" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                <div style="display:flex;">
+@*                    <div class="card-body">
+                            <a asp-action="Edit" asp-controller="Fridges" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                    </div>*@
+                    @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                    @*<a asp-action="DeleteGet" asp-controller="Fridges" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>*@
+
+                    <div >
+                        <button class="btn btn-danger" onclick="deleteModal({ url: '/Fridges/DeleteGet', data: '@item.Id' })"
+                                data-toggle="ajax-modal" data-target="Modal">
+                            Delete
+                        </button>
+                    </div>
+                </div>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+@section Scripts{
+
+    <script src="~/js/modal.js"></script>
+
+}
