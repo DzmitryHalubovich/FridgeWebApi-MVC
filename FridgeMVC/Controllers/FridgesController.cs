@@ -20,7 +20,8 @@ namespace FridgeManager.Client.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View(new FridgeDTO());
+
+            return PartialView("_createPartialView", new FridgeDTO());
         }
 
         [HttpPost]
@@ -53,8 +54,6 @@ namespace FridgeManager.Client.Controllers
             
             fridge = response.Content.ReadAsAsync<FridgeIndexDTO>().Result;
 
-            //return PartialView("_createPartial", newExample);
-            //return RedirectToAction("Index");
             return PartialView("_deletePartialView",fridge);
         }
 
