@@ -12,9 +12,9 @@ namespace FridgeManager.Services.Interfaces
     public interface IGenericService<T> where T : class
     {
         public Task<List<FridgeIndexDTO>> GetAllAsync();
-        public Task<Fridge> GetByIdAsync(int id);
+        public Task<Fridge> GetByIdAsync(Guid id);
         public Task CreateAsync(FridgeDTO dto);
-        public Task UpdateAsync(int id, FridgeDTO dto);
-        public Task DeleteAsync(int dto);
+        public Task UpdateAsync(Guid id, FridgeDTO dto);
+        public Task DeleteAsync(Guid dto);
     }
 }

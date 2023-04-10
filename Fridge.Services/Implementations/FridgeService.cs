@@ -34,9 +34,9 @@ namespace FridgeManager.Services.Implementations
 
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(Guid id)
         {
-           var fridge = await _context.Fridges.SingleOrDefaultAsync(x=>x.Id==id);
+           var fridge = await _context.Fridges.SingleOrDefaultAsync(x=>x.FridgeId==id);
 
             if (fridge != null)
             {
@@ -50,20 +50,20 @@ namespace FridgeManager.Services.Implementations
         {
             return await _context.Fridges.Select(p=> new FridgeIndexDTO
             {
-                Id = p.Id,
+                FridgeId = p.FridgeId,
                 Name=p.Name,
                 OwnerName =p.OwnerName
             }).ToListAsync();
         }
 
-        public async Task<Fridge> GetByIdAsync(int id)
+        public async Task<Fridge> GetByIdAsync(Guid id)
         {
-            return await _context.Fridges.FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.Fridges.FirstOrDefaultAsync(x => x.FridgeId == id);
         }
 
-        public async Task UpdateAsync(int id, FridgeDTO dto)
+        public async Task UpdateAsync(Guid id, FridgeDTO dto)
         {
-            var existedFridge = await _context.Fridges.SingleOrDefaultAsync(x => x.Id== id);
+            var existedFridge = await _context.Fridges.SingleOrDefaultAsync(x => x.FridgeId== id);
             
             existedFridge.Name = dto.Name;
             existedFridge.OwnerName = dto.OwnerName;

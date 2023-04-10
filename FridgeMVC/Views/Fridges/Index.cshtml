@@ -17,7 +17,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayNameFor(model => model.FridgeId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -32,7 +32,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                @Html.DisplayFor(modelItem => item.FridgeId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -50,11 +50,11 @@
                     @*<a asp-action="DeleteGet" asp-controller="Fridges" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>*@
 
                     <div >
-                        <button class="btn btn-danger" onclick="deleteModal({ url: '/Fridges/DeleteGet', data: '@item.Id' })"
+                        <button class="btn btn-danger" onclick="deleteModal({ url: '/Fridges/DeleteGet', data: '@item.FridgeId' })"
                                 data-toggle="ajax-modal" data-target="Modal">
                             Delete
                         </button>
-                            <button class="btn btn-info" onclick="deleteModal({ url: '/Fridges/UpdateFridge', data: '@item.Id' })"
+                            <button class="btn btn-info" onclick="deleteModal({ url: '/Fridges/UpdateFridge', data: '@item.FridgeId' })"
                                 data-toggle="ajax-modal" data-target="Modal">
                             Update
                         </button>
