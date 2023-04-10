@@ -1,6 +1,7 @@
 ﻿using FridgeManager.DAL;
 using FridgeManager.DAL.DTO.Fridge;
 using FridgeManager.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace FridgeManager.Services.Implementations
@@ -14,10 +15,10 @@ namespace FridgeManager.Services.Implementations
             _context=context;
         }
 
-        public void Create(FridgeDTO dto)
+        public async Task CreateAsync(FridgeDTO dto)
         {
-            var isAlreadyExist = 
-                _context.Fridges.SingleOrDefault(x=>x.Name == dto.Name && x.OwnerName == dto.OwnerName);
+            var isAlreadyExist = await
+                _context.Fridges.SingleOrDefaultAsync(x=>x.Name == dto.Name && x.OwnerName == dto.OwnerName);
 
             if (isAlreadyExist is null)
             {
@@ -27,47 +28,48 @@ namespace FridgeManager.Services.Implementations
                     OwnerName = dto.OwnerName,
                 };
 
-                _context.Fridges.Add(newFridge);
-                _context.SaveChanges();
+                await _context.Fridges.AddAsync(newFridge);
+                await _context.SaveChangesAsync();
             }
 
         }
 
-        public void DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-           var fridge =  _context.Fridges.SingleOrDefault(x=>x.Id==id);
+           var fridge = await _context.Fridges.SingleOrDefaultAsync(x=>x.Id==id);
 
             if (fridge != null)
             {
                 _context.Fridges.Remove(fridge);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
 
         }
 
-        public List<FridgeIndexDTO> GetAll()
+        public async Task<List<FridgeIndexDTO>> GetAllAsync()
         {
-            return _context.Fridges.Select(p=> new FridgeIndexDTO
+            return await _context.Fridges.Select(p=> new FridgeIndexDTO
             {
                 Id = p.Id,
                 Name=p.Name,
                 OwnerName =p.OwnerName
-            }).ToList();
+            }).ToListAsync();
         }
 
-        public Fridge GetById(int id)
+        public async Task<Fridge> GetByIdAsync(int id)
         {
-            return _context.Fridges.FirstOrDefault(x => x.Id == id);
+            return await _context.Fridges.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public void Update(int id, FridgeDTO dto)
+        public async Task UpdateAsync(int id, FridgeDTO dto)
         {
-            var existedFridge = _context.Fridges.SingleOrDefault(x => x.Id== id);
+            var existedFridge = await _context.Fridges.SingleOrDefaultAsync(x => x.Id== id);
             
             existedFridge.Name = dto.Name;
             existedFridge.OwnerName = dto.OwnerName;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
+
     }
 }

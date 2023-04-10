@@ -64,5 +64,25 @@ namespace FridgeManager.Client.Controllers
             return RedirectToAction("Index");
         }
 
+
+        [HttpGet]
+        public IActionResult UpdateFridge(int id)
+        {
+            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("fridges/"+ id.ToString()).Result;
+
+            var fridge = new FridgeDTO();
+
+            fridge = response.Content.ReadAsAsync<FridgeDTO>().Result;
+
+            return PartialView("_updatePartialView", fridge);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateFridge(FridgeDTO dto)
+        {
+            HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("fridges/"+ dto.Id.ToString(), dto).Result;
+
+            return RedirectToAction("Index");
+        }
     }
 }
