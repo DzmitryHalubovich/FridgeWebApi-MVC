@@ -18,7 +18,7 @@ namespace FridgeManager.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllFridges()
         {
-            var allFridges = _fridgeService.GetAll();
+            var allFridges = await _fridgeService.GetAllAsync();
 
             return Ok(allFridges);
         }
@@ -26,28 +26,28 @@ namespace FridgeManager.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetFridgeById(int id)
         {
-            var fridge = _fridgeService.GetById(id);
+            var fridge = await _fridgeService.GetByIdAsync(id);
             return Ok(fridge);
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateNewFridge(FridgeDTO dto)
         {
-            _fridgeService.Create(dto);
+            await _fridgeService.CreateAsync(dto);
             return Ok();
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, FridgeDTO dto)
         {
-            _fridgeService.Update(id, dto);
+            await _fridgeService.UpdateAsync(id, dto);
             return Ok();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            _fridgeService.DeleteAsync(id);
+            await _fridgeService.DeleteAsync(id);
             return Ok();
         }
     }
