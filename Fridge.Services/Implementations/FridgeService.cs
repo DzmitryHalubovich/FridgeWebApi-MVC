@@ -20,6 +20,9 @@ namespace FridgeManager.Services.Implementations
             var isAlreadyExist = await
                 _context.Fridges.SingleOrDefaultAsync(x=>x.Name == dto.Name && x.OwnerName == dto.OwnerName);
 
+            var allModels = await _context.FridgeModels.ToListAsync();
+
+
             if (isAlreadyExist is null)
             {
                 Fridge newFridge = new Fridge

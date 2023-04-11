@@ -28,9 +28,6 @@ namespace FridgeManager.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("FridgeId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -40,9 +37,6 @@ namespace FridgeManager.DAL.Migrations
 
                     b.HasKey("FridgeModelId");
 
-                    b.HasIndex("FridgeId")
-                        .IsUnique();
-
                     b.ToTable("FridgeModels");
                 });
 
@@ -51,6 +45,12 @@ namespace FridgeManager.DAL.Migrations
                     b.Property<Guid>("FridgeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ModelFridgeModelId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ModelId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -62,24 +62,25 @@ namespace FridgeManager.DAL.Migrations
 
                     b.HasKey("FridgeId");
 
+                    b.HasIndex("ModelFridgeModelId");
+
                     b.ToTable("Fridges");
-                });
-
-            modelBuilder.Entity("FridgeManager.DAL.Entities.FridgeModel", b =>
-                {
-                    b.HasOne("FridgeManager.DAL.Fridge", "Fridge")
-                        .WithOne("Model")
-                        .HasForeignKey("FridgeManager.DAL.Entities.FridgeModel", "FridgeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Fridge");
                 });
 
             modelBuilder.Entity("FridgeManager.DAL.Fridge", b =>
                 {
-                    b.Navigation("Model")
+                    b.HasOne("FridgeManager.DAL.Entities.FridgeModel", "Model")
+                        .WithMany("Fridge")
+                        .HasForeignKey("ModelFridgeModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Model");
+                });
+
+            modelBuilder.Entity("FridgeManager.DAL.Entities.FridgeModel", b =>
+                {
+                    b.Navigation("Fridge");
                 });
 #pragma warning restore 612, 618
         }

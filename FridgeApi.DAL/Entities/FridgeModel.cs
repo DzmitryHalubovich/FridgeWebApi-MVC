@@ -15,10 +15,8 @@ namespace FridgeManager.DAL.Entities
         [Required]
         public string Name { get; set; }
 
-        public int? year { get; set; }
+        public int? Year { get; set; }
 
-
-        public Guid FridgeId  { get; set; }
-        public Fridge Fridge { get; set; }
+        public List<Fridge>? Fridge { get; set; }
     }
 }

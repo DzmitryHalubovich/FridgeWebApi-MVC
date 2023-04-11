@@ -1,5 +1,6 @@
 ﻿using FridgeManager.DAL.DTO.Fridge;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FridgeManager.Client.Controllers
 {
