@@ -2,7 +2,7 @@
 {
     public class FridgeIndexDTO
     {
-        public int Id { get; set; }
+        public Guid FridgeId { get; set; }
         public string Name { get; set; }
         public string OwnerName { get; set; }
     }

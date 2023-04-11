@@ -1,5 +1,6 @@
 ﻿using FridgeManager.DAL.DTO.Fridge;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FridgeManager.Client.Controllers
 {
@@ -32,21 +33,21 @@ namespace FridgeManager.Client.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public IActionResult Edit(Guid id)
         {
-            return View(new FridgeDTO() { Id = id });
+            return View(new FridgeDTO() { FridgeId = id });
         }
 
         [HttpPost]
         public IActionResult Edit(FridgeDTO dto)
         {
-            HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("fridges/" + dto.Id.ToString(), dto).Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("fridges/" + dto.FridgeId.ToString(), dto).Result;
 
             return RedirectToAction("Index");
         }
 
         [HttpGet]
-        public IActionResult DeleteGet(int id)
+        public IActionResult DeleteGet(Guid id)
         {
             var fridge = new FridgeIndexDTO();
 
@@ -58,7 +59,7 @@ namespace FridgeManager.Client.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteFridge(int id)
+        public IActionResult DeleteFridge(Guid id)
         {
             HttpResponseMessage response = GlobalVariables.WebApiClient.DeleteAsync("fridges/" + id.ToString()).Result;
             return RedirectToAction("Index");
@@ -80,7 +81,7 @@ namespace FridgeManager.Client.Controllers
         [HttpPost]
         public IActionResult UpdateFridge(FridgeDTO dto)
         {
-            HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("fridges/"+ dto.Id.ToString(), dto).Result;
+            HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("fridges/"+ dto.FridgeId.ToString(), dto).Result;
 
             return RedirectToAction("Index");
         }

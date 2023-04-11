@@ -1,10 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FridgeManager.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace FridgeManager.DAL
 {
     public class AppDbContext : DbContext
     {
         public DbSet<Fridge> Fridges { get; set; }
+        public DbSet<FridgeModel> FridgeModels { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
